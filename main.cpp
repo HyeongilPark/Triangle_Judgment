@@ -49,6 +49,4 @@ bool is_triangle(double x0, double x1, double x2, double y0, double y1, double y
     } else {
         return true;
     }
-    return true;
-    ;
 }
