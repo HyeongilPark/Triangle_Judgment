@@ -8,3 +8,9 @@ $ cd build
 $ cmake ..
 $ ./main.out
 ```
+
+####実行
+```
+$ ./main.out
+$ ./test.out
+```
