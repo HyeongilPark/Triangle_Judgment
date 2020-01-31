@@ -1,5 +1,5 @@
+#include <cmath>
 #include <iostream>
-#include "stdio.h"
 
 using namespace std;
 
@@ -32,6 +32,14 @@ int main() {
 bool is_triangle(double x0, double x1, double x2, double y0, double y1, double y2) {
     const double comparison_value = 0.001;
 
+    const double sum_point_three = x2 + y2;
+    const double sum_point_two   = x1 + y1;
+    const double sum_point_one   = x0 + y0;
+
+    const double remaining_three_one = std::fmod(sum_point_three, sum_point_one);
+    const double remaining_two_one   = std::fmod(sum_point_two, sum_point_one);
+
+    // X座標が同じい場合
     if (abs(x0 - x1) < comparison_value) {
         if (abs(x1 - x2) < comparison_value) {
             return false;
@@ -39,14 +47,25 @@ bool is_triangle(double x0, double x1, double x2, double y0, double y1, double y
             return true;
         }
     }
-
+    // Y座標が同じい場合
     else if (abs(y0 - y1) < comparison_value) {
         if (abs(y1 - y2) < comparison_value) {
             return false;
         } else {
             return true;
         }
-    } else {
+    }
+
+    // 斜めの場合
+    else if (abs(remaining_three_one) < comparison_value) {
+        if (abs(remaining_two_one) < comparison_value) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    else {
         return true;
     }
 }
