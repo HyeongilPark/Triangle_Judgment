@@ -11,3 +11,4 @@ set (ENABLED_WARNINGS -Werror -Wall -Wextra -Wcast-align -Wconversion -Wmissing-
 add_executable(main.out main.cpp)
 
 target_compile_options(main.out PUBLIC ${ENABLED_WARNINGS})
+add_executable(test.out test.cpp)
