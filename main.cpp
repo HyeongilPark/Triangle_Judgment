@@ -32,40 +32,33 @@ int main() {
 bool is_triangle(double x0, double x1, double x2, double y0, double y1, double y2) {
     const double comparison_value = 0.001;
 
-    const double sum_point_three = x2 + y2;
-    const double sum_point_two   = x1 + y1;
-    const double sum_point_one   = x0 + y0;
+    const double distance_AB = sqrt(((x0 - x1) * (x0 - x1)) + ((y0 - y1) * (y0 - y1)));
+    const double distance_AC = sqrt(((x0 - x2) * (x0 - x2)) + ((y0 - y2) * (y0 - y2)));
+    const double distance_BC = sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
 
-    const double remaining_three_one = std::fmod(sum_point_three, sum_point_one);
-    const double remaining_two_one   = std::fmod(sum_point_two, sum_point_one);
+    double high_Length;
+    double remaining_Length1;
+    double remaining_Length2;
 
-    // X座標が同じい場合
-    if (abs(x0 - x1) < comparison_value) {
-        if (abs(x1 - x2) < comparison_value) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-    // Y座標が同じい場合
-    else if (abs(y0 - y1) < comparison_value) {
-        if (abs(y1 - y2) < comparison_value) {
-            return false;
-        } else {
-            return true;
-        }
+    if (distance_AB > distance_AC && distance_AB > distance_BC) {
+        high_Length       = distance_AB;
+        remaining_Length1 = distance_AC;
+        remaining_Length2 = distance_BC;
+    } else if (distance_AC > distance_AB && distance_AC > distance_BC) {
+        high_Length       = distance_AC;
+        remaining_Length1 = distance_AB;
+        remaining_Length2 = distance_BC;
+    } else if (distance_BC >= distance_AC && distance_BC >= distance_AB) {
+        high_Length       = distance_BC;
+        remaining_Length1 = distance_AB;
+        remaining_Length2 = distance_AC;
     }
 
-    // 斜めの場合
-    else if (abs(remaining_three_one) < comparison_value) {
-        if (abs(remaining_two_one) < comparison_value) {
-            return false;
-        } else {
-            return true;
-        }
-    }
+    const double result_Length = high_Length - (remaining_Length1 + remaining_Length2);
 
-    else {
+    if (abs(result_Length) < comparison_value) {
+        return false;
+    } else {
         return true;
     }
 }
