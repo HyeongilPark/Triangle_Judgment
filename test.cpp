@@ -3,7 +3,7 @@
 
 using namespace std;
 
-bool is_triangle(double x0, double x1, double x2, double y0, double y1, double y2);
+bool is_triangle(double x0, double y0, double x1, double y1, double x2, double y2);
 
 int main() {
     const double sample1 = is_triangle(1.0, 1.0, 2.0, 1.0, 2.0, 2.0);
