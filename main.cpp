@@ -40,11 +40,11 @@ bool is_triangle(double x0, double x1, double x2, double y0, double y1, double y
     double remaining_Length1;
     double remaining_Length2;
 
-    if (distance_AB > distance_AC && distance_AB > distance_BC) {
+    if (distance_AB >= distance_AC && distance_AB >= distance_BC) {
         high_Length       = distance_AB;
         remaining_Length1 = distance_AC;
         remaining_Length2 = distance_BC;
-    } else if (distance_AC > distance_AB && distance_AC > distance_BC) {
+    } else if (distance_AC > distance_AB && distance_AC >= distance_BC) {
         high_Length       = distance_AC;
         remaining_Length1 = distance_AB;
         remaining_Length2 = distance_BC;
